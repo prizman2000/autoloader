@@ -1,4 +1,4 @@
-<?php
+<?php namespace Entity\shop;
 
     class Larek extends Shop {
 

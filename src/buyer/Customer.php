@@ -1,4 +1,4 @@
-<?php
+<?php namespace Entity\buyer;
 
     class Customer {
         private $name;

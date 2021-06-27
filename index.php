@@ -1,24 +1,17 @@
 <?php
 
-    class Autoloader {
-        public static function autoload() {
-            spl_autoload_register(function ($class) {
-                $path = './src/'.str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
-                if (file_exists($path)) {
-                    require_once $path;
-                    return true;
-                }else {
-                    return false;
-                }
-            });
-        }
+    function autoload($class) {
+            echo $class;
+            $path = str_replace('\\Entity', '', $class);
+            $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
+            require_once __DIR__."/src/$path.php";
     }
 
-    Autoloader::autoload();
+    spl_autoload_register('autoload');
 
-    $berezka = new Shop(4242424242, 42);
-    $larek = new Larek(123456789, 9);
-    $slava = new Customer('Slava', 42);
+    $berezka = new \Entity\shop\Shop(4242424242, 42);
+    $larek = new \Entity\shop\Larek(123456789, 9);
+    $slava = new \Entity\buyer\Customer('Slava', 42);
 
     $slava->buyBook($berezka);
     echo $slava->getBooks();
